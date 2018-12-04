@@ -1,0 +1,7 @@
+config FPC1145_PLATFORM
+	bool "FPC1145 Fingerprint Sensor"
+	default y
+	---help---
+	  This sensor is used in Sony Xperia XZ Premium (maple).
+	  Select this if you have this device.
+

@@ -1,0 +1,6 @@
+config LDO_VIBRATOR
+	bool "LDO Vibrator"
+	default y
+	---help---
+	  Vibrators usually found in Sony phones.
+

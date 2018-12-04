@@ -1,0 +1,6 @@
+config HALL_BU520X1NVX
+	bool "BU520X1NVX Hall sensor"
+	default y
+	---help---
+	  This hall sensor is usually found in Sony phones.
+

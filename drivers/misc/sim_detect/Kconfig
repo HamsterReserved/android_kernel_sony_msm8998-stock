@@ -1,0 +1,7 @@
+config SIM_DETECT
+	bool "SIM tray open/close detection"
+	default y
+	---help---
+	  This driver registers a new switch, and changes its status every time SIM tray
+	  is opened or closed. System may want to make use of this event to re-initialize
+	  modem.
