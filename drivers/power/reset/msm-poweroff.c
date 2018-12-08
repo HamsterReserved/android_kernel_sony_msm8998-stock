@@ -301,6 +301,18 @@ static void msm_restart_prepare(const char *cmd)
 				(cmd != NULL && cmd[0] != '\0'));
 	}
 
+	/* Force warm reset and allow device to
+	 * preserve memory on restart for kernel
+	 * panic or for bootloader and recovery
+	 * commands */
+	if (cmd != NULL) {
+		if ((!strncmp(cmd, "bootloader", 10)) ||
+		    (!strncmp(cmd, "recovery", 8)) || in_panic)
+			need_warm_reset = true;
+		else
+			need_warm_reset = false;
+	}
+
 	if (in_panic)
 		need_warm_reset = true;
 
@@ -326,8 +338,8 @@ static void msm_restart_prepare(const char *cmd)
 			__raw_writel(0x77665500, restart_reason);
 		} else if (!strncmp(cmd, "recovery", 8)) {
 			qpnp_pon_set_restart_reason(
-				PON_RESTART_REASON_RECOVERY);
-			__raw_writel(0x77665502, restart_reason);
+				PON_RESTART_REASON_OEM_F);
+			__raw_writel(0x6f656d46, restart_reason);
 		} else if (!strcmp(cmd, "rtc")) {
 			qpnp_pon_set_restart_reason(
 				PON_RESTART_REASON_RTC);
