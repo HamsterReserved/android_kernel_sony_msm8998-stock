@@ -640,6 +640,14 @@ config ONESEG_TUNER_SMTVJ19X
 	  This module controls power switching and reset switching of
 	  SMT-VJ19x.
 
+config LDO_VIBRATOR
+	tristate "LDO Vibrator"
+	default n
+	help
+	  This option enables device driver support for the vibrator
+	  on the LDO line. The vibrator is controlled using the
+	  timed output class.
+
 config TOF_SENSOR
 	tristate "ToF Sensor"
 	depends on I2C
