@@ -10,11 +10,6 @@
  * GNU General Public License for more details.
  *
  */
-/*
- * NOTE: This file has been modified by Sony Mobile Communications Inc.
- * Modifications are Copyright (c) 2017 Sony Mobile Communications Inc,
- * and licensed under the license of the file.
- */
 
 #define pr_fmt(fmt)	"%s: " fmt, __func__
 
@@ -6391,8 +6386,16 @@ void mdss_mdp_footswitch_ctrl_handler(bool on)
 static void mdss_mdp_signal_retire_fence(struct msm_fb_data_type *mfd,
 					 int retire_cnt)
 {
-	struct mdss_overlay_private *mdp5_data = mfd_to_mdp5_data(mfd);
+	struct mdss_overlay_private *mdp5_data;
 
+	if (!mfd)
+		return;
+
+	mdp5_data = mfd_to_mdp5_data(mfd);
+	if (!mdp5_data->ctl || !mdp5_data->ctl->ops.remove_vsync_handler)
+		return;
+
+	__vsync_retire_signal(mfd, retire_cnt);
 	pr_debug("Signaled (%d) pending retire fence\n", retire_cnt);
 	if (!mdp5_data->ctl || !mdp5_data->ctl->mfd)
 		return;
