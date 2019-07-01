@@ -500,6 +500,9 @@ static struct icnss_priv {
 	u8 requesting_sub_system;
 	u16 line_number;
 	char function_name[QMI_WLFW_FUNCTION_NAME_LEN_V01 + 1];
+	char crash_reason[SUBSYS_CRASH_REASON_LEN];
+	wait_queue_head_t wlan_pdr_debug_q;
+	int data_ready;
 	struct completion unblock_shutdown;
 } *penv;
 
