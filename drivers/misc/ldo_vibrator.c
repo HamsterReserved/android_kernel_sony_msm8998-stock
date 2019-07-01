@@ -199,7 +199,7 @@ static const struct of_device_id ldo_vibrator_of_match[] = {
 	{ .compatible = "ldo-vibrator", },
 	{ }
 };
-MODULE_DEVICE_TABLE(of, ldo_vibrator_ids);
+MODULE_DEVICE_TABLE(of, ldo_vibrator_of_match);
 
 static struct platform_driver ldo_vibrator_driver = {
 	.driver = {
