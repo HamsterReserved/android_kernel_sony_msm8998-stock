@@ -69,7 +69,6 @@ obj-$(CONFIG_CXD224X_NFC)	+= cxd224x-i2c.o
 obj-y				+= qcom/
 obj-$(CONFIG_QPNP_MISC) 	+= qpnp-misc.o
 obj-$(CONFIG_MEMORY_STATE_TIME) += memory_state_time.o
-obj-$(CONFIG_LDO_VIBRATOR)    += ldo_vibrator.o
 obj-$(CONFIG_TOF_SENSOR) += tof_sensor.o
 obj-$(CONFIG_SENSORS_TCS3490) += tcs3490.o
 obj-$(CONFIG_RAMDUMP_TAGS) += rdtags.o
