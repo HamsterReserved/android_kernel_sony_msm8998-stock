@@ -257,6 +257,29 @@ struct dwc3_msm {
 	struct mutex suspend_resume_mutex;
 
 	enum usb_device_speed override_usb_speed;
+
+#ifdef CONFIG_USB_DWC3_MSM_ID_POLL
+	/* id polling */
+	bool			id_polling_use;
+	bool			id_polling_start;
+	struct delayed_work	id_polling_work;
+	struct workqueue_struct *id_polling_q;
+	unsigned int		id_polling_up_interval;
+	unsigned int		id_polling_up_period;
+	int			id_polling_pd_gpio;
+	struct qpnp_vadc_chip	*usb_detect_adc;
+	spinlock_t		id_polling_lock;
+	bool			otg_present;
+	unsigned int		lcd_blanked;
+	struct wakeup_source	id_polling_wu;
+	struct delayed_work	setsink_work;
+	struct wake_lock	setsink_lock;
+	int			setsink_cnt;
+#ifdef CONFIG_FB
+	struct notifier_block	fb_notif;
+#endif /* CONFIG_FB */
+#endif /* CONFIG_USB_DWC3_MSM_ID_POLL */
+	bool			send_vbus_drop_ue;
 };
 
 #define USB_HSPHY_3P3_VOL_MIN		3050000 /* uV */
